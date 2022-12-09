@@ -18,12 +18,8 @@ int main(int argc, char* argv[])
         std::cerr << "Error: missing file handle argument" << std::endl;
         return 1;
     }
-
-    // Parse the file handle argument
-    int file_handle = atoi(argv[1]);
-
     // Print the file handle// Get the process ID of the current process
-    int pid = _getpid();
+    int pid = atoi(argv[1]);
 
     // Create the path to the directory containing the file handles of the current process
     std::filesystem::path dir_path;
@@ -81,12 +77,8 @@ int main(int argc, char* argv[])
             // Skip the entries that are not file handles (e.g. ".", "..")
             if (fd <= 0) continue;
 
-            // Check if the current entry corresponds to the given file handle
-            if (fd == file_handle)
-            {
-                // Print the file handle
-                std::cout << fd << std::endl;
-            }
+            // Print the file handle
+            std::cout << fd << std::endl;
         }
 
     return 0;
